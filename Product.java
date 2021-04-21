@@ -8,12 +8,12 @@ import java.time.LocalDate;
  */
 public class Product {
     //product name
-    private String name;
+    private final String name;
     // category which this product is in it
-    private String category;
+    private final String category;
     // weight of the product in kilograms
-    private double weight;
-    private double price;
+    private final double weight;
+    private final double price;
     private final LocalDate productDate;
     private final LocalDate expireDate;
 
