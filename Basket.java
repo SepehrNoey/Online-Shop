@@ -27,6 +27,14 @@ public class Basket {
     }
 
     /**
+     * to access invoice number
+     * @return invoice number
+     */
+    public int getInvoiceNumber() {
+        return invoiceNumber;
+    }
+
+    /**
      * a method to add product to basket
      */
     public void add(int index){
@@ -116,14 +124,18 @@ public class Basket {
      */
     @Override
     public String toString(){
+        if (myBasket.size() == 0) {
+            System.out.println("No products yet.");
+            return null;
+        }
         int i = 0;
-        String string = "List of products in basket: [\n";
+        String string = "List of products in basket: \n";
         for (Product product: myBasket.keySet())
         {
             i++;
             string = string + i + ")\n" + product.toString() + "in basket: " + myBasket.get(product) + "\n";
         }
-        return string + "]";
+        return string;
     }
 
     /**
@@ -135,7 +147,7 @@ public class Basket {
 
     /**
      * gets total cost
-     * @return
+     * @return total cost
      */
     public double getTotalCost() {
         return totalCost;

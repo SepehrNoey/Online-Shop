@@ -87,9 +87,9 @@ public class Product {
 
     @Override
     public String toString() {
-        return "{\n  \"Product\": {\n" + "    \"NAME\": \"" + name.substring(0,1).toUpperCase() + "\",\n"
-                + "    \"CATEGORY\": \"" + category.substring(0,1).toUpperCase() + "\",\n" +
+        return "{\n  \"Product\": {\n" + "    \"NAME\": \"" + name + "\",\n"
+                + "    \"CATEGORY\": \"" + category + "\",\n" +
                 String.format("    \"WEIGHT\": \"%.1f\",\n    \"PRICE\": \"%.1f\",",weight,price)
-                + "    \"MANUFACTURE_DATE\": "+ productDate + ",\n" + "    \"EXPIRATION_DATE\": "+ expireDate + "\n  }\n}";
+                + "\n    \"MANUFACTURE_DATE\": "+ productDate + ",\n" + "    \"EXPIRATION_DATE\": "+ expireDate + "\n  }\n}";
     }
 }

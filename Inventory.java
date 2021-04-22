@@ -68,13 +68,13 @@ public class Inventory {
             return null;
         }
         int i = 0;
-        String string = "Here's the list of products we have: [\n";
+        String string = "Here's the list of products we have: \n";
         for (Product product:products.keySet())
         {
             i++;
-            string = string + i + ")\n" + product.toString() + "in stock: " + products.get(product) + "\n";
+            string = string + i + ")" + product.toString() + "in stock: " + products.get(product) + "\n";
         }
-        return string + "]";
+        return string;
     }
 
     /**

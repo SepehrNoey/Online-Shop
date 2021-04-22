@@ -42,6 +42,7 @@ public class Main {
             else if (inputs[0].equals("products"))
                 System.out.println(inventory);
             else if (inputs[0].equals("checkout")){
+                System.out.println();
                 System.out.println("Total cost is: " + basket.getTotalCost() + "$");
                 System.out.println("We pay it ourselves this time :)");
                 basket.setPaid();
