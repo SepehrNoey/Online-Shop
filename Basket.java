@@ -44,6 +44,7 @@ public class Basket {
                     System.out.println("Product added to your basket.");
                     myBasket.put(product , 1);
                 }
+                totalCost = totalCost + product.getPrice();
                 isFound = true;
                 inventory.updateStock(product , '-');
             }
@@ -83,11 +84,13 @@ public class Basket {
             Scanner scanner = new Scanner(System.in);
             int num = scanner.nextInt();
             if (num < myBasket.get(toRemove)) {
+                totalCost -= toRemove.getPrice() * num;
                 myBasket.replace(toRemove,myBasket.get(toRemove) - num);
                 for (int j = 0 ; j < num ; j++)
                     inventory.updateStock(toRemove , '+');
             }
             else {
+                totalCost -= toRemove.getPrice() * myBasket.get(toRemove);
                 myBasket.remove(toRemove);
                 for (int j = 0 ; j < myBasket.get(toRemove) ; j++)
                     inventory.updateStock(toRemove,'+');
@@ -98,9 +101,26 @@ public class Basket {
         // there is just one of this product in basket
 
         else {
+            totalCost -= toRemove.getPrice();
             myBasket.remove(toRemove);
             System.out.println("Product removed.");
             inventory.updateStock(toRemove , '+');
         }
+    }
+
+    /**
+     * overridden toString for Basket class , contains details of each product in the basket
+     * @return a single string which contains all details in it
+     */
+    @Override
+    public String toString(){
+        int i = 0;
+        String string = "List of products in basket: \n";
+        for (Product product: myBasket.keySet())
+        {
+            i++;
+            string = string + i + ")\n" + product.toString() + "in basket: " + myBasket.get(product) + "\n";
+        }
+        return string;
     }
 }

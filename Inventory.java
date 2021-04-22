@@ -79,24 +79,18 @@ public class Inventory {
     }
 
     /**
-     * a method to list products and their price
+     * overridden toString for inventory, contains details of all products in order
      */
-    public void printStock(){
+    @Override
+    public String toString(){
         int i = 0;
-        System.out.println("Here's the list of products we have: ");
+        String string = "Here's the list of products we have: \n";
         for (Product product:products.keySet())
         {
             i++;
-            System.out.println(i  + ")" + "{");
-            System.out.println("  \"Product\": {");
-            System.out.println("    \"NAME\": \"" + product.getName().substring(0,1).toUpperCase() + "\",");
-            System.out.println("    \"CATEGORY\": \"" + product.getCategory().substring(0,1).toUpperCase() + "\",");
-            System.out.printf("    \"WEIGHT\": \"%.1f\",",product.getWeight());
-            System.out.printf("    \"PRICE\": \"%.1f\",",product.getPrice());
-            System.out.println("    \"MANUFACTURE_DATE\": "+ product.getProductDate() + ",");
-            System.out.println("    \"EXPIRATION_DATE\": "+ product.getExpireDate());
-            System.out.println("  }\n}in stock: " + products.get(product));
+            string = string + i + ")\n" + product.toString() + "in stock: " + products.get(product) + "\n";
         }
+        return string;
     }
 
     /**

@@ -81,4 +81,12 @@ public class Product {
     public LocalDate getExpireDate() {
         return expireDate;
     }
+
+    @Override
+    public String toString() {
+        return "{\n  \"Product\": {\n" + "    \"NAME\": \"" + name.substring(0,1).toUpperCase() + "\",\n"
+                + "    \"CATEGORY\": \"" + category.substring(0,1).toUpperCase() + "\",\n" +
+                String.format("    \"WEIGHT\": \"%.1f\",\n    \"PRICE\": \"%.1f\",",weight,price)
+                + "    \"MANUFACTURE_DATE\": "+ productDate + ",\n" + "    \"EXPIRATION_DATE\": "+ expireDate + "\n  }\n}";
+    }
 }
