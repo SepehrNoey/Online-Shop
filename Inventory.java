@@ -1,7 +1,6 @@
 package onlineShop;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Inventory {
@@ -26,8 +25,10 @@ public class Inventory {
             if (product.getName().equals(name))
                 newOrExistingProduct = product;
         if (newOrExistingProduct != null) {
-            System.out.println("This product already exists. If you want to add some , enter the number. Else enter -1 for exit");
+            System.out.println("This product already exists. If you want to update the stock , enter the number (positive or negative) , else enter 0 for exit");
             int numToAdd = scanner.nextInt();
+            if (numToAdd == 0)
+                return;
             products.replace(newOrExistingProduct,numToAdd + products.get(newOrExistingProduct));
             System.out.println("Stock updated.");
         }
@@ -46,6 +47,30 @@ public class Inventory {
             products.put(newOrExistingProduct,num);
             System.out.println("New product added.");
         }
+    }
 
+    /**
+     * it's a method to remove or subtract number of a product
+     */
+    public void removeProduct(){
+        System.out.println("Please enter the name of product: ");
+        Scanner scanner = new Scanner(System.in);
+        String name = scanner.nextLine().trim().toUpperCase();
+        for (Product product:products.keySet()) {
+            if (product.getName().equals(name)){
+                System.out.println("Found in stock.");
+                System.out.println( "In stock: "+ products.get(product));
+                System.out.println("Enter the number you want to remove (all or some): ");
+                int num = scanner.nextInt();
+                if (num < products.get(product)){
+                    products.replace(product, products.get(product) - num);
+                    System.out.println("Done.");
+                }
+                else {
+                    products.remove(product);
+                    System.out.println("Done.");
+                }
+            }
+        }
     }
 }
