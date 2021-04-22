@@ -10,8 +10,11 @@ import java.util.*;
 public class Basket {
     private HashMap<Product , Integer> myBasket;
     private double totalCost;
+    // to identify if it's paid or not
     private boolean isPaid;
+    // shomare factor
     private final int invoiceNumber;
+    // to access the inventory for some other tasks
     private final Inventory inventory;
 
     /**

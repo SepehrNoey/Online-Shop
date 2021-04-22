@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args){
         Inventory inventory = new Inventory();
+        // adding products
         Product carrot = new Product("Carrot","Vegetables", 5,20,"2020-3-15","2021-3-15");
         Product apple = new Product("Apple","Fruits", 10,50,"2020-4-1","2021-8-1");
         Product eggs = new Product("12xEggs","Egg", 100,40,"2020-1-1","2021-6-1");
@@ -42,7 +43,7 @@ public class Main {
             else if (inputs[0].equals("products"))
                 System.out.println(inventory);
             else if (inputs[0].equals("checkout")){
-                System.out.println();
+                System.out.println("Invoice number: "  + basket.getInvoiceNumber());
                 System.out.println("Total cost is: " + basket.getTotalCost() + "$");
                 System.out.println("We pay it ourselves this time :)");
                 basket.setPaid();
