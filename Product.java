@@ -33,8 +33,8 @@ public class Product {
         this.price = price;
         String[] manFac = manufactureDate.trim().split("-");
         String[] exp = expirationDate.trim().split("-");
-        productDate = new LocalDate.of(Integer.parseInt(manFac[0]) , Integer.parseInt(manFac[1]) , Integer.parseInt(manFac[2]));
-        expireDate = new LocalDate.of(Integer.parseInt(exp[0]) , Integer.parseInt(exp[1]) , Integer.parseInt(exp[2]));
+        productDate = LocalDate.of(Integer.parseInt(manFac[0]) , Integer.parseInt(manFac[1]) , Integer.parseInt(manFac[2]));
+        expireDate = LocalDate.of(Integer.parseInt(exp[0]) , Integer.parseInt(exp[1]) , Integer.parseInt(exp[2]));
     }
 
     /**
