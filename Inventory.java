@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 /**
  * simulates an stock(inventory)
+ *
+ * @author Sepehr Noey
  */
 public class Inventory {
     private HashMap<Product,Integer> products;
@@ -19,38 +21,16 @@ public class Inventory {
     /**
      * is a method to add new products or updating existing products
      */
-    public void addProduct(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter product name: ");
-        String name = scanner.nextLine().trim().toLowerCase();
-        Product newOrExistingProduct = null;
-        for (Product product:products.keySet())
-            if (product.getName().equals(name))
-                newOrExistingProduct = product;
-        if (newOrExistingProduct != null) {
-            System.out.println("This product already exists. If you want to update the stock ," +
-                    " enter the number (positive or negative) , else enter 0 for exit");
-            int numToAdd = scanner.nextInt();
-            if (numToAdd == 0)
-                return;
-            products.replace(newOrExistingProduct,numToAdd + products.get(newOrExistingProduct));
-            System.out.println("Stock updated.");
-        }
-        else {
-            System.out.println("Please enter category: ");
-            String category = scanner.nextLine().trim().toLowerCase();
-            System.out.println("Please enter weight: ");
-            double weight = Double.parseDouble(scanner.nextLine().trim());
-            System.out.println("Please enter price: ");
-            double price = Double.parseDouble(scanner.nextLine().trim());
-            System.out.println("How much time does it take to expire?(in days)");
-            int days = scanner.nextInt();
-            System.out.println("How many of this product you want to add?");
-            int num = scanner.nextInt();
-            newOrExistingProduct = new Product(name,category,weight,price,days);
-            products.put(newOrExistingProduct,num);
-            System.out.println("New product added.");
-        }
+    public void addProduct(Product product , int num){
+        boolean isFound = false;
+        for (Product productOflist:products.keySet())
+            if (productOflist.getName().equals(product.getName())) // updating existing product
+            {
+                products.replace(product, num + products.get(product));
+                isFound = true;
+            }
+        if (!isFound) // it's a new product
+            products.put(product , num);
     }
 
     /**
@@ -59,7 +39,7 @@ public class Inventory {
     public void removeProduct(){
         System.out.println("Please enter the name of product: ");
         Scanner scanner = new Scanner(System.in);
-        String name = scanner.nextLine().trim().toLowerCase();
+        String name = scanner.nextLine();
         for (Product product:products.keySet()) {
             if (product.getName().equals(name)){
                 System.out.println("Found in stock.");
@@ -83,14 +63,18 @@ public class Inventory {
      */
     @Override
     public String toString(){
+        if(products.size() == 0) {
+            System.out.println("We are out of stock.");
+            return null;
+        }
         int i = 0;
-        String string = "Here's the list of products we have: \n";
+        String string = "Here's the list of products we have: [\n";
         for (Product product:products.keySet())
         {
             i++;
             string = string + i + ")\n" + product.toString() + "in stock: " + products.get(product) + "\n";
         }
-        return string;
+        return string + "]";
     }
 
     /**

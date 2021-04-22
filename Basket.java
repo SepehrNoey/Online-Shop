@@ -4,6 +4,8 @@ import java.util.*;
 
 /**
  * a class that simulates cart
+ *
+ * @author Sepehr Noey
  */
 public class Basket {
     private HashMap<Product , Integer> myBasket;
@@ -115,12 +117,27 @@ public class Basket {
     @Override
     public String toString(){
         int i = 0;
-        String string = "List of products in basket: \n";
+        String string = "List of products in basket: [\n";
         for (Product product: myBasket.keySet())
         {
             i++;
             string = string + i + ")\n" + product.toString() + "in basket: " + myBasket.get(product) + "\n";
         }
-        return string;
+        return string + "]";
+    }
+
+    /**
+     * changes isPaid field to true
+     */
+    public void setPaid() {
+        isPaid = true;
+    }
+
+    /**
+     * gets total cost
+     * @return
+     */
+    public double getTotalCost() {
+        return totalCost;
     }
 }

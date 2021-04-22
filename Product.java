@@ -21,17 +21,20 @@ public class Product {
      * constructor for product
      * @param name product name
      * @param category category which this product is in it
-     * @param weight weight of the product in kilograms
+     * @param weight weight of the product
      * @param price price considered for this product
-     * @param daysToExpire specifies the days remaining to expire , it is used for making expireDate
+     * @param manufactureDate sets date of manufacture , entered String should be in this format: year-month-day
+     * @param expirationDate sets date of expiration , entered String should be in this format: year-month-day
      */
-    public Product(String name , String category , double weight , double price , int daysToExpire){
+    public Product(String name , String category , double weight , double price , String manufactureDate , String expirationDate){
         this.name = name;
         this.category = category;
         this.weight = weight;
         this.price = price;
-        productDate = LocalDate.now();
-        expireDate = productDate.plusDays(daysToExpire);
+        String[] manFac = manufactureDate.trim().split("-");
+        String[] exp = expirationDate.trim().split("-");
+        productDate = new LocalDate.of(Integer.parseInt(manFac[0]) , Integer.parseInt(manFac[1]) , Integer.parseInt(manFac[2]));
+        expireDate = new LocalDate.of(Integer.parseInt(exp[0]) , Integer.parseInt(exp[1]) , Integer.parseInt(exp[2]));
     }
 
     /**
